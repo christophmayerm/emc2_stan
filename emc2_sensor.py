@@ -30,8 +30,7 @@ def add_constraint(stan_code, hypercube):
     for i in range(len(hypercube)):
         row = i % 4
         col = i // 4
-        new_prior = f"    x_unknown[{
-            row+1}, {col+1}] ~ uniform({hypercube[i].min}, {hypercube[i].max});\n"
+        new_prior = f"    x_unknown[{row+1}, {col+1}] ~ uniform({hypercube[i].min}, {hypercube[i].max});\n"
         stan_code = f"{stan_code[:idx]}{new_prior}{stan_code[idx:]}"
         idx += len(new_prior)
 

@@ -37,13 +37,16 @@ def get_compile_info(echo=False):
     cmd = ["make", "-C", cmdstanpy.cmdstan_path(), "compile_info"]
     res = cmd_run_echoed(cmd=cmd, echo=echo, capture_output=True)
     if res.returncode != 0:
-        print(f"Could not get compile info from makefile; exited with exit code {
-              res.returncode}", file=sys.stderr)
+        print(
+            f"Could not get compile info from makefile; exited with exit code {res.returncode}", file=sys.stderr)
         print(f"stderr:\n{res.stderr.decode('utf8')}")
         sys.exit(1)
 
     compile_info = res.stdout.decode("utf8")
-    info_iter = iter(compile_info.split())
+    compile_info = list(filter(lambda x: not x.startswith(
+        "make:"), filter(lambda x: len(x) > 0, compile_info.split("\n"))))
+    assert len(compile_info) == 1
+    info_iter = iter(compile_info[0].split())
 
     compiler = next(info_iter)
     include_paths = list()
