@@ -1,6 +1,6 @@
-# E(MC)$^2$ - Stan compatibilty layer
+# E(MC)<sup>2</sup> - Stan compatibilty layer
 
-Use the E(MC)$^2$ preprocessing for multimodal Bayesian Models with the Stan library.
+Use the E(MC)<sup>2</sup> preprocessing for multimodal Bayesian Models with the Stan library.
 
 ## Getting started
 
